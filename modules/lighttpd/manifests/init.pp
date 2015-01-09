@@ -8,7 +8,8 @@ class lighttpd {
 
   # enable php
   exec { "enable-php":
-    command => "lighty-enable-mod fastcgi-php"
+    command => "lighty-enable-mod fastcgi-php",
+    notify  => Exec['reload-lighttpd'],
   }
 
   #point to /vagrant/webroot
@@ -23,5 +24,11 @@ class lighttpd {
     require => Package["lighttpd"],
   }
 
+  exec {'reload-lighttpd':
+    command     => '/etc/init.d/lighttpd force-reload',
+    refreshonly => true,
+    onlyif      => 'lighttpd-angel -t -f /etc/lighttpd/lighttpd.conf',
+    path        => $::path,
+  }
 
 }
