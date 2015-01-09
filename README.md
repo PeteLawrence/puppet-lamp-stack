@@ -1,4 +1,4 @@
-# LAMP Stacks Made Easy with Vagrant & Puppet
+# LLMP Stacks Made Easy with Vagrant & Puppet
 
 Builds a LLMP (Linux, lighttpd, mysql, php) stack using Puppet and Vagrant.
 
